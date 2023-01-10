@@ -6,6 +6,7 @@ main(rebg_type="onnx") # 更快速，更清晰，需要性能
 ```
 在线apikey，[remove.bg网站](https://www.remove.bg/dashboard#api-key)
 [临时邮箱](https://www.linshiyouxiang.net) ,可用域名：@bestdefinitions.com
+思路来源：https://github.com/huanghaozi/AutoMatting (在此基础上，批量获取，自动切换apikey解决频繁，错误，额度等问题，自动换背景图，规范导入导出文件名，不足之处就是没有大佬的GUI)
 
 必要依赖：`pip install -r requiremens.txt`
 可选依赖：
