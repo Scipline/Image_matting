@@ -11,6 +11,7 @@ main(rebg_type="onnx") # 更快速，更清晰，需要性能
 思路来源：https://github.com/huanghaozi/AutoMatting (在此基础上，批量获取，自动切换apikey解决频繁，错误，额度等问题，自动换背景图，规范导入导出文件名，不足之处就是没有大佬的GUI)
 
 必要依赖：`pip install -r requiremens.txt`
+
 可选依赖：
 安装**cv2**，`pip install opencv-contrib-python==4.5.5.64`。适用于:python3.7 python3.8 python3.9 解释器
 安装**Pillow**，`pip install Pillow==9.3.0`。适配rembg==2.0.30
