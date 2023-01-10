@@ -1,4 +1,23 @@
-# Rembg
+## 使用说明：
+```
+任选其一
+main(rebg_type="web") # 更精准，低清晰度，需要网络
+main(rebg_type="onnx") # 更快速，更清晰，需要性能
+```
+在线apikey，[remove.bg网站](https://www.remove.bg/dashboard#api-key)
+[临时邮箱](https://www.linshiyouxiang.net) ,可用域名：@bestdefinitions.com
+
+必要依赖：`pip install -r requiremens.txt`
+可选依赖：
+安装**cv2**，`pip install opencv-contrib-python==4.5.5.64`。适用于:python3.7 python3.8 python3.9 解释器
+安装**Pillow**，`pip install Pillow==9.3.0`。适配rembg==2.0.30
+
+
+以下内容为[rembg](https://github.com/danielgatis/rembg)库官方文档，仅用于存档。
+
+---
+
+## Rembg
 
 [![Downloads](https://pepy.tech/badge/rembg)](https://pepy.tech/project/rembg)
 [![Downloads](https://pepy.tech/badge/rembg/month)](https://pepy.tech/project/rembg/month)

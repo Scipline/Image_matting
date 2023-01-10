@@ -1,6 +1,6 @@
 # !/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-# 模型文件：https://ghproxy.com/https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx 放在”C:\Users\Administrator\.u2net\u2net.onnx:
+# 模型文件：https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx 放在”C:\Users\Administrator\.u2net\u2net.onnx:
 # 官方文档：https://github.com/danielgatis/rembg
 """
 apikey面板：https://www.remove.bg/dashboard#api-key
@@ -30,10 +30,10 @@ def api_key():
     return token
 
 
-def main():
+def main(rebg_type):
     # color Ex:red,green / hex:81d4fa ?  "
     bgcolor = "white"
-    # bgcolor = "" # 留空为空白背景
+    bgcolor = ""  # 留空为空白背景
     api = api_key()
     if not Path("out_img").exists():
         Path("out_img").mkdir()
@@ -42,19 +42,20 @@ def main():
     for file in p.glob('*.[pj][np]g'):
         input_path = str(file)
         output_path = str(p.parent / ("out_img/" + file.name))
+        if Path(output_path).exists():
+            continue
         with open(input_path, 'rb') as i:
             with open(output_path, 'wb') as o:
                 photo_data = i.read()
-                # photo_data = Image.open(input_path)
-                output = rebg_web(photo_data, api, bgcolor)
-                # output = rebg_cpu(photo_data, input_path, output_path)
-                while not output:
-                    api = api_key()
+                if rebg_type == "web":
                     output = rebg_web(photo_data, api, bgcolor)
-                    # output=rebg_cpu(photo_data)
+                    while not output:
+                        api = api_key()
+                        output = rebg_web(photo_data, api, bgcolor)
+                elif rebg_type == "onnx":
+                    output = rebg_cpu(photo_data, input_path, output_path)
                 if output != 400:
                     o.write(output)
-                    # bg_enhence(input_path, output_path)
 
 
 def rebg_web(photo_data, api, bgcolor=None):
@@ -94,6 +95,6 @@ def rebg_cpu(photo_data, input_path, output_path):
     return remove(photo_data, session=session)
 
 
-
 if __name__ == "__main__":
-    main()
+    main(rebg_type="web")
+    # main(rebg_type="onnx")
