@@ -52,10 +52,11 @@ def main(rebg_type):
                     while not output:
                         api = api_key()
                         output = rebg_web(photo_data, api, bgcolor)
+                        if output == 400:
+                            output = rebg_cpu(photo_data, input_path, output_path)
                 elif rebg_type == "onnx":
                     output = rebg_cpu(photo_data, input_path, output_path)
-                if output != 400:
-                    o.write(output)
+                o.write(output)
 
 
 def rebg_web(photo_data, api, bgcolor=None):
