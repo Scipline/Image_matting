@@ -33,7 +33,7 @@ def api_key():
 def main(rebg_type):
     # color Ex:red,green / hex:81d4fa ?  "
     bgcolor = "white"
-    bgcolor = ""  # 留空为空白背景
+    # bgcolor = ""  # 留空为空白背景
     api = api_key()
     if not Path("out_img").exists():
         Path("out_img").mkdir()
@@ -53,9 +53,9 @@ def main(rebg_type):
                         api = api_key()
                         output = rebg_web(photo_data, api, bgcolor)
                         if output == 400:
-                            output = rebg_cpu(photo_data, input_path, output_path)
+                            output = rebg_cpu(photo_data)
                 elif rebg_type == "onnx":
-                    output = rebg_cpu(photo_data, input_path, output_path)
+                    output = rebg_cpu(photo_data)
                 o.write(output)
 
 
@@ -90,7 +90,7 @@ def rebg_web(photo_data, api, bgcolor=None):
         print(response.status_code, response.text)
 
 
-def rebg_cpu(photo_data, input_path, output_path):
+def rebg_cpu(photo_data):
     # 选择模型
     session = new_session(model_name="u2net")
     return remove(photo_data, session=session)
